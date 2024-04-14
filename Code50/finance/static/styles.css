@@ -1,1 +1,108 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
 
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+table {
+    margin: 0 auto;
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    text-align: left;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: rgb(179, 208, 255, 0.3)
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+.sellbtn {
+    background-color: darkred;
+    border-color: #690000;
+    border-top: 1px solid #690000;
+    border-bottom: 2px solid #690000;
+}
+
+.sellbtn:hover {
+    background-color: #ce0000;
+    border-color: darkred;
+    box-shadow:0px 2px 3px #666,
+               inset 0 0 4px #ccc;
+    background-image: linear-gradient(180deg, #ff990050, transparent);
+    border-top: 2px solid #ffffffdd;
+    border-bottom: 1px solid darkred;
+}
+
+.buybtn {
+    background-color: #0d6efd;
+    border-color: #0058d3;
+    border-top: 1px solid #0058d3;
+    border-bottom: 2px solid #0058d3;
+}
+
+.buybtn:hover {
+    background-color: #0981f2;
+    border-color: #0d6efd;
+    box-shadow:0px 2px 3px #666,
+               inset 0 0 4px #ccc;
+    background-image: linear-gradient(180deg, #54f6ff50, transparent);
+    border-top: 2px solid #ffffffdd;
+    border-bottom: 1px solid #0d6efd;
+}
+
+.soldbadge {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: #0d6efd;
+    border: 1px solid transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+}
+
+.gradientbar {
+    margin:0;
+    padding:0;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    box-shadow:0px 2px 3px #666;
+    background-image: linear-gradient(180deg, transparent, #af9e83);
+    background-color: #eee;
+}
