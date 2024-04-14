@@ -1,0 +1,9 @@
+{
+    "gitdoc.enabled": true,
+    "files.associations": {
+        "cs50.h": "c",
+        "getopt.h": "c",
+        "getopt_core.h": "c",
+        "getopt_ext.h": "c"
+    }
+}
