@@ -1,1 +1,11 @@
+sort1 uses: Bubble Sort
 
+How do you know?: It's the fastest with sorted data because it only has to iterate once.
+
+sort2 uses: Merge Sort
+
+How do you know?: It was the fastest with all tests because it invariably, logarithmically shrinks the problem set.
+
+sort3 uses: Selection Sort
+
+How do you know?: It was equally slow with all three data sets (random, reversed, sorted).
