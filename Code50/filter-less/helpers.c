@@ -28,23 +28,6 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
-// Reflect image horizontally
-void reflect(int height, int width, RGBTRIPLE image[height][width])
-{
-    RGBTRIPLE temp;
-
-    for (int y = 0; y < height; y++)
-    {
-        for (int x = 0; x < width / 2; x++)
-        {
-            temp = image[y][x];
-            image[y][x] = image[y][(width - 1) - x];
-            image[y][(width - 1) - x] = temp;
-        }
-    }
-    return;
-}
-
 // Convert image to sepia
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -82,6 +65,23 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
+    return;
+}
+
+// Reflect image horizontally
+void reflect(int height, int width, RGBTRIPLE image[height][width])
+{
+    RGBTRIPLE temp;
+
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width / 2; x++)
+        {
+            temp = image[y][x];
+            image[y][x] = image[y][(width - 1) - x];
+            image[y][(width - 1) - x] = temp;
+        }
+    }
     return;
 }
 
@@ -134,6 +134,7 @@ void getAvg(RGBTRIPLE *avg, int pos[2], int height, int width, RGBTRIPLE image[h
     return;
 }
 
+
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     // used for calculating average pixel
@@ -178,120 +179,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[y][x].rgbtGreen = temp[y][x].rgbtGreen;
             image[y][x].rgbtBlue = temp[y][x].rgbtBlue;
             image[y][x].rgbtRed = temp[y][x].rgbtRed;
-        }
-    }
-
-    return;
-}
-
-// Detect edges
-void findEdge(RGBTRIPLE *temp, int pos[2], int height, int width, RGBTRIPLE image[height][width])
-{
-    // set up edge detection kernel
-    int G[3][3] =
-    {
-        {-1, 0, 1},
-        {-2, 0, 2},
-        {-1, 0, 1}
-    };
-
-    // this one is not necessary, as it is just rotated 90 degrees to the first
-    // int Gy[3][3] =
-    // {
-    //     {-1, -2, -1},
-    //     { 0,  0,  0},
-    //     { 1,  2,  1}
-    // };
-
-    // store in-bounds check just to simplify the if statement
-    int isInBounds;
-    int cmp;
-
-    // set up floats for rgb values to prevent imprecision caused by ints
-    float rx = 0;
-    float gx = 0;
-    float bx = 0;
-
-    float ry = 0;
-    float gy = 0;
-    float by = 0;
-
-    for (int h = 0; h < 3; h++)
-    {
-        cmp = (pos[0] - 1) + h;
-        isInBounds = (cmp >= 0 && cmp < height) ? 1 : 0;
-        if (isInBounds)
-        {
-            for (int w = 0; w < 3; w++)
-            {
-                cmp = (pos[1] - 1) + w;
-                isInBounds = (cmp >= 0 && cmp < width) ? 1 : 0;
-                if (isInBounds)
-                {
-                    // calculate products of surrounding pixel RGB values horizontally
-                    rx += image[(pos[0] - 1) + h][(pos[1] - 1) + w].rgbtRed * G[h][w];
-                    gx += image[(pos[0] - 1) + h][(pos[1] - 1) + w].rgbtGreen * G[h][w];
-                    bx += image[(pos[0] - 1) + h][(pos[1] - 1) + w].rgbtBlue * G[h][w];
-
-                    // ...and vertically
-                    ry += image[(pos[0] - 1) + h][(pos[1] - 1) + w].rgbtRed * G[w][h];
-                    gy += image[(pos[0] - 1) + h][(pos[1] - 1) + w].rgbtGreen * G[w][h];
-                    by += image[(pos[0] - 1) + h][(pos[1] - 1) + w].rgbtBlue * G[w][h];
-
-                    // temp is a pointer to the current pixel
-                    // calculate its color based on the surrounding pixels
-                    temp -> rgbtRed = (int)min(round(sqrtf(pow(ry, 2) + pow(rx, 2))), 255);
-                    temp -> rgbtGreen = (int)min(round(sqrtf(pow(gy, 2) + pow(gx, 2))), 255);
-                    temp -> rgbtBlue = (int)min(round(sqrtf(pow(by, 2) + pow(bx, 2))), 255);
-                }
-            }
-        }
-    }
-
-    return;
-}
-
-// check for pixel contrast
-void edges(int height, int width, RGBTRIPLE image[height][width])
-{
-    // set up a temp pixel matrix so our calculations are based on the original image
-    RGBTRIPLE timage[height][width];
-    RGBTRIPLE temp;
-    int pos[2] = {0};
-
-    // blur(height, width, image);
-
-    for (int y = 0; y < height; y++)
-    {
-        for (int x = 0; x < width; x++)
-        {
-            temp = image[y][x];
-            pos[0] = y;
-            pos[1] = x;
-
-
-            findEdge(&temp, pos, height, width, image);
-
-            timage[y][x] = temp;
-        }
-    }
-
-
-    // for (int y = 0; y < height; y++)
-    // {
-    //     for (int x = 0; x < width; x++)
-    //     {
-    //         int pos[] = {y, x};
-
-    //         temp[y][x] = findEdge(pos, height, width, temp);
-    //     }
-    // }
-
-    for (int y = 0; y < height; y++)
-    {
-        for (int x = 0; x < width; x++)
-        {
-            image[y][x] = timage[y][x];
         }
     }
 
