@@ -1,1 +1,99 @@
+<!DOCTYPE html>
 
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <!-- Kitboga-related trivia. ;) -->
+                <h2>Part 1: Multiple Choice </h2>
+                <hr />
+                <h3>How does one go about pardoning the Christmas turkey?</h3>
+                <br />
+                <table>
+                    <tr>
+                        <td>
+                            <button id="btn1" type="submit">With a magic wand</button>
+                        </td>
+                        <td>
+                            <button id="btn2" type="submit">After marinating it in orange juice</button>
+                        </td>
+                        <td>
+                            <button id="btn3" type="submit">By swearing on a bible</button>
+                        </td>
+                        <td>
+                            <button id="btn4" type="submit">Before reading it its rights</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="btn1Answer" align="center">
+                        </td>
+                        <td id="btn2Answer" align="center">
+                        </td>
+                        <td id="btn3Answer" align="center">
+                        </td>
+                        <td id="btn4Answer" align="center">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr />
+                <h3>Do you love Miller?</h3>
+                <br />
+                <table>
+                    <tr>
+                        <td>
+                            <input class="input" type="text" id="miller" />
+                        </td>
+                        <td>
+                            <button id="inputBtn" type="submit">Check Answer</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="inputBtnAnswer" align="center"></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+    <script>
+        // This code is really bad but that's fine. :)
+        const clickEvent = (e) => {
+            e.preventDefault();
+            let a;
+            let t = e.target;
+
+            if (t.id == "inputBtn")
+            {
+                a = document.getElementById('miller').value.toLowerCase() == "yes";
+            }
+            else
+            {
+                a = (t.id == 'btn2' ? true : false);
+            }
+
+            const newElement = document.getElementById(t.id + 'Answer').textContent = (a ? 'Correct!' : 'Incorrect');
+            t.style.backgroundColor = a ? 'green' : 'red';
+            t.style.color = 'white';
+        };
+
+        let buttons = document.querySelectorAll('button');
+        for (let i = 0; i < buttons.length; i++)
+        {
+            console.log(buttons[i]);
+            buttons[i].addEventListener("click", clickEvent);
+        }
+    </script>
+</html>
