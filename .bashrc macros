@@ -1,0 +1,56 @@
+function ll() { ls -l $*; }
+function c() { git checkout $*; }
+function b() { git branch $*; }
+function d() { git diff $*; }
+function p() { git pull; }
+function s() { git status; }
+function a() { git add "$*"; }
+function cm() { git commit -m "$*"; }
+function m() { c master;p; }
+
+function bdb() { ssh mailman-app01.qa09.sea1.cmates.com; }
+function h() { ssh hadoop5-manager01.prod.iad1.cmates.com; }
+function aws() { ssh pegasus-gateway.hadoop.prod.email.pegasus.aws.ppcn.us; }
+
+function e() { echo "\\\\\\";echo $*;echo "///"; }
+
+function bc() {
+  if [ -v $1 ]
+    then
+      e Please specify a branch to create.;
+    else
+      m; b $1; c $1;
+  fi
+}
+
+function rmbranch() {
+  if [ -v $1 ];
+  then
+    e Please specify a branch to delete.;
+  else
+    e Pulling master;m;e Removing local branch $1;b -d $1;e Removing remote branch $1;git push origin --delete $1;
+    if [ $? -eq 0 ];
+      then
+        e Deleted $1.;
+      else
+        e Errorlevel: $?;
+    fi
+  fi
+}
+
+function gm() {
+  if [ -v $1 ];
+  then
+    e Please specify a branch.;
+  else
+    e Switching to master and getting latest;m;e Switching to $1;c $1;e Pulling $1;p;e Merging master into $1;git merge --no-ff origin/master;e Switching to master;c master;e Merging $1 down to master;git merge --no-ff $1;
+    if [ $? -eq 0 ];
+      then
+        e Type \"git push\" to complete merge after reviewing.;
+      else
+        e Errorlevel: $?;
+    fi
+  fi
+}
+
+function prune() { git remote update origin --prune; }
