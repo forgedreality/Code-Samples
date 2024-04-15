@@ -1,0 +1,78 @@
+@import './resets', './vars', './header';
+
+@function weight($weight-name) {
+    @return map-get($font-weights, $weight-name);
+}
+
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true) {
+    @if $light-theme {
+        background: lighten($primaryColor, 70%);
+        color: darken($textColor, 70%);
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+
+}
+
+body {
+    background: $primaryColor;
+    color: $textColor;
+}
+
+.contact button {
+   @extend header;
+   width: 100% - 20%
+}
+
+.main {
+    @include flexCenter(column);
+    width: 80%;
+    margin: 0 auto;
+
+    @include mobile() {
+        flex-direction: column;
+    }
+}
+
+.stuff {
+    color: $textColor;
+    font-weight: weight(bold);
+    width: 80%;
+    margin: 0 auto;
+    @include flexCenter(row);
+
+    @include mobile() {
+        flex-direction: column;
+    }
+
+    #{&}_para1 {
+        color: blueviolet;
+        font-weight: weight(regular);
+
+        &:hover {
+            color: pink;
+        }
+    }
+
+    #{&}_para2 {
+        @extend .stuff_para1;
+        &:hover {
+            color: $accentColor;
+        }
+    }
+}
+
+.light {
+    @include theme(false);
+}

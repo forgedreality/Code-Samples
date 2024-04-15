@@ -1,0 +1,12 @@
+header {
+    @include flexCenter(column, lightblue);
+    color: $textColor;
+
+    button {
+        background: $primaryBtn;
+        color: $btnText;
+        &:hover {
+            background: rgb(233, 150, 25)
+        }
+    }
+}
