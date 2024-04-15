@@ -1,0 +1,43 @@
+.wrapper {
+    padding-top: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.tab-item {
+    border: transparent solid 1px;
+    display: inline-flex;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #4e016a;
+    transition: 0.25s;
+}
+
+.tab-item:hover {
+    background-color: #721d91;
+}
+
+.tab-item.active {
+    transition: none;
+    border: #000 solid 1px;
+    background-color: #7ca500;
+    color: #fff;
+}
+
+.content {
+    padding: 20px 10px;
+    height: 300px;
+    overflow: auto;
+    background-color: #fff;
+    color: red;
+}
