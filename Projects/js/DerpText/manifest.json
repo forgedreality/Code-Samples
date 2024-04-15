@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "DerpText",
+  "version": "0.91",
+
+  "description": "Turn any text into DeRPteXt.",
+
+  "icons": {
+    "96": "icons/lulicon.png"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "synergyforge@reality.com"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["derptext.js"]
+    }
+  ]
+}

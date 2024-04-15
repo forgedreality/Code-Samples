@@ -1,0 +1,1 @@
+@"D:\Program Files\7-Zip\7z" a derptext.xpi derptext.js manifest.json icons\

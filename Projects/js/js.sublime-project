@@ -1,0 +1,24 @@
+{
+	"build_systems":
+	[
+		{
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "\"d:\\Program Files\\Python\\python.exe\" -u \"$file\"",
+		}
+	],
+	"settings":
+	{
+		"python_interpreter": "D:\\Program Files\\Python\\python.exe",
+	},
+	"folders":
+	[
+		{
+			"path": "DerpText",
+		},
+		{
+			"path": "E:\\Sublime Text Projects\\Projects\\voxel_cam"
+		},
+	],
+}
