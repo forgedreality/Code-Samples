@@ -1,0 +1,31 @@
+.button {
+  background-color: #00b5ca;
+  text-align: center;
+  color: #fff;
+  font: italic 2em "Segoe UI", sans-serif;
+  padding: 1em;
+  margin-bottom: 2em;
+  cursor: pointer;
+  display: block;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+.button:hover {
+  background-color: #ff6600;
+}
+
+.button:active {
+  background-color: #ee00ee;
+  color: black;
+}
+
+.output {
+  text-align: center;
+  font: bold 1.2em "Segoe UI", sans-serif;
+}
