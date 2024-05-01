@@ -7,14 +7,14 @@ var max = 12;
 const generateWords = () => {
 	var word = "";
 	var str = "";
-  for (var i = 0; i < max; i++) {
-    word = daBlock[getIndex(size)];
-    while (str.includes(word)) {
-	    word = daBlock[getIndex(size)];
-    }
-    str += word + (i == max - 1 ? "" : " ");
-  }
-  return str;
+	for (var i = 0; i < max; i++) {
+		word = daBlock[getIndex(size)];
+		while (str.includes(word)) {
+			word = daBlock[getIndex(size)];
+		}
+		str += word + (i == max - 1 ? "" : " ");
+	}
+	return str;
 };
 
 const getIndex = (sz) => {
@@ -22,5 +22,5 @@ const getIndex = (sz) => {
 };
 
 $("div#button").click(function() {
-  $("div#replacer").contents().replaceWith(generateWords());
+	$("div#replacer").contents().replaceWith(generateWords());
 });
