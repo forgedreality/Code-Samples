@@ -1,3 +1,21 @@
+<!-- 
+    Customer Obsession
+    Ownership
+    Invent and Simplify
+    Are Right, A Lot
+    Learn and Be Curious
+    Hire and Develop the Best
+    Insist on the Highest Standards
+    Think Big
+    Bias for Action
+    Frugality
+    Earn Trust
+    Dive Deep
+    Have a Backbone; Disagree and Commit
+    Deliver Results
+    Strive to be Earth's Best Employer
+    Succes and Scale Bring Broad Responsibility
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +52,7 @@
     <div id="container">
         <script type="text/javascript">
             var content;
-            var numRows = 6;
+            var numRows = 5;
             var html = "";
             var clr = [];
 
@@ -55,7 +73,7 @@
                 // build html as string to prevent append method from
                 // trying to auto-close tags, thereby breaking layout
                 html += (i % 2 == 0 ? '<div class="row">\n' : '');
-                html += '<div class="'+(i % 2 == 0 ? 'left' : 'right')+'" id="rowItem_'+i+'" style="background-color:#'+clr2[0]+clr2[1]+clr2[2]+';color:#'+
+                html += '<div class="'+(i % 2 == 0 ? 'left' + (i == numRows - 1 ? ' span' : '') : 'right')+'" id="rowItem_'+i+'" style="background-color:#'+clr2[0]+clr2[1]+clr2[2]+';color:#'+
                     // make the foreground color contrasted against the background color
                     (brightness < 50 ? 'fff' : '000')+';">'+
                         content +
