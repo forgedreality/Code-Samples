@@ -73,7 +73,7 @@
                 // build html as string to prevent append method from
                 // trying to auto-close tags, thereby breaking layout
                 html += (i % 2 == 0 ? '<div class="row">\n' : '');
-                html += '<div class="'+(i % 2 == 0 ? 'left' + (i == numRows - 1 ? ' span' : '') : 'right')+'" id="rowItem_'+i+'" style="background-color:#'+clr2[0]+clr2[1]+clr2[2]+';color:#'+
+                html += '<div class="'+(i % 2 == 0 ? 'left' + (i == numRows - 1 ? ' span' : '') : 'right')+'" id="rowItem_'+i+'" style="background-color:#'+clr2.join('')+';color:#'+
                     // make the foreground color contrasted against the background color
                     (brightness < 50 ? 'fff' : '000')+';">'+
                         content +
