@@ -1,0 +1,17 @@
+.row {
+    display: flex;
+    width: 100%;
+    font-size: 15px;
+}
+
+.left, .right {
+    padding: 4em;
+    margin: 1em;
+/*    background-color: #003366;*/
+/*    color: white;*/
+    flex: 50%;
+}
+
+.right {
+/*    background-color: #660033;*/
+}
