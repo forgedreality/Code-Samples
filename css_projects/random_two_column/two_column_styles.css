@@ -1,0 +1,22 @@
+.row {
+    display: flex;
+    width: 100%;
+    font-size: 15px;
+}
+
+.left, .right {
+    border-radius: 1.2em;
+    padding: 4em;
+    margin: 1em;
+/*    background-color: #003366;*/
+/*    color: white;*/
+    flex: 50%;
+}
+
+.span {
+    flex: 100%;
+}
+
+.right {
+/*    background-color: #660033;*/
+}
