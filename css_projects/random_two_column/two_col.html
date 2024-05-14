@@ -34,10 +34,11 @@
     <div id="container">
         <script type="text/javascript">
             var content;
+            var numRows = 6;
             var html = "";
             var clr = [];
 
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < numRows; i++) {
                 // get RGB values
                 clr = [get_rand(), get_rand(), get_rand()];
                 // calculate overall brightness of chosen color
