@@ -12,6 +12,10 @@
     flex: 50%;
 }
 
+.span {
+    flex: 100%;
+}
+
 .right {
 /*    background-color: #660033;*/
 }
