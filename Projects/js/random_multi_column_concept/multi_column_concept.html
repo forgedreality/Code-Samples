@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dynamic Multi-Column Layout Concept</title>
+    <link rel="stylesheet" href="./multi_column_styles.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="./multi_column_script.js"></script>
+</head>
+<body>
+    <div id="container">
+        <script type="text/javascript">
+            (function() {
+                var content;
+                var cells = get_rand(1, 35);
+                var cols = get_rand(1, 6);
+                // var rows = Math.ceil(cells / cols);
+                var colWidth = (100 / cols);
+
+                var html = "";
+                var clr = [];
+
+                let colCounter = 0;
+
+                html += '<div class="info">Showing '+cells+' cell'+(cells > 1 ? 's across '+cols+' column'+(cols > 1 ? 's' : '') : '')+'...</div>';
+
+                for (let i = 0; i < cells; i++) {
+                    // get RGB values
+                    clr = [get_rand(), get_rand(), get_rand()];
+
+                    // calculate overall brightness of chosen color
+                    // this is used later for choosing text color
+                    let brightness = ((clr[0]*299)+(clr[1]*587)+(clr[2]*114))/1000;
+                    // convert brightness value to percentage
+                    brightness = (Math.round(brightness/255*100));
+
+                    // generate hex values
+                    clr2 = [clr[0].toString(16).padStart(2, 0), clr[1].toString(16).padStart(2, 0), clr[2].toString(16).padStart(2, 0)];
+
+                    // get random wordlist
+                    content = build_content();
+
+                    html += (colCounter == 0 ? '<div class="row">\n' : '');
+                    html += '<div class="column" id="item_'+i+'" style="background-color:#'+clr2.join('')+';color:#'+
+                        // make the foreground color contrasted against the background color
+                        (brightness < 50 ? 'fff' : '000')+'; flex: '+((colCounter < cols - 1) && (i == cells - 1) ? ((cols - 1) - (colCounter - 1)) * colWidth : colWidth)+'%;">'+
+                        '<div class="content">'+
+                        content +
+                    '</div></div>\n';
+                    html += (colCounter == cols - 1 ? '</div>\n' : '');
+
+                    colCounter = (colCounter == cols - 1 ? 0 : colCounter + 1);
+                }
+
+// older version, garbage code :D
+/*
+                for (let i = 0; i < cells; i++) {
+                    for (let j = 0; j < cols; j++) {
+                        // get RGB values
+                        clr = [get_rand(), get_rand(), get_rand()];
+
+                        // calculate overall brightness of chosen color
+                        // this is used later for choosing text color
+                        let brightness = ((clr[0]*299)+(clr[1]*587)+(clr[2]*114))/1000;
+                        // convert brightness value to percentage
+                        brightness = (Math.round(brightness/255*100));
+
+                        // generate hex values
+                        clr2 = [clr[0].toString(16).padStart(2, 0), clr[1].toString(16).padStart(2, 0), clr[2].toString(16).padStart(2, 0)];
+
+                        // get random wordlist
+                        content = build_content();
+                        // build html as string to prevent append method from
+                        // trying to auto-close tags, thereby breaking layout
+                        html += (j == 0 ? '<div class="row">\n' : '');
+                        html += '<div class="column" id="rowItem_'+i+'" style="background-color:#'+clr2.join('')+';color:#'+
+                            // make the foreground color contrasted against the background color
+                            (brightness < 50 ? 'fff' : '000')+'; flex: '+((j < cols - 1) && (i == cells - 1) ? ((cols - 1) - j) * colWidth : colWidth)+'%;">'+
+                            content +
+                        '</div>\n';
+                        html += (j == cols - 1 ? '</div>\n' : '');
+                    }
+                }
+*/
+                $('#container').append(html);
+            })();
+        </script>
+    </div>
+</body>
+</html>
