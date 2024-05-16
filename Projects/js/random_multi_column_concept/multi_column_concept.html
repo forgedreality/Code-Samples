@@ -16,8 +16,12 @@
                 var content;
                 var cells = get_rand(1, 35);
                 var cols = get_rand(1, 6);
-                // var rows = Math.ceil(cells / cols);
-                var colWidth = (100 / cols);
+                var rows = Math.ceil(cells / cols);
+
+                // get remaining cells if not evenly divisible by columns
+                var remainder = cells % cols;
+
+                var colWidth = 100 / cols;
 
                 var html = "";
                 var clr = [];
@@ -43,18 +47,23 @@
                     content = build_content();
 
                     html += (colCounter == 0 ? '<div class="row">\n' : '');
-                    html += '<div class="column" id="item_'+i+'" style="background-color:#'+clr2.join('')+';color:#'+
+                    html += '<div class="column" id="item_'+i+'" style="background-color:#'+clr2.join('')+';color:'+
+                        // '#'+(brightness < 50 ? 'fff' : '000')+'; flex: '+((colCounter < cols - 1) && (i == cells - 1) ? ((cols - 1) - (colCounter - 1)) * colWidth : colWidth)+'%;">'+
+
                         // make the foreground color contrasted against the background color
-                        (brightness < 50 ? 'fff' : '000')+'; flex: '+((colCounter < cols - 1) && (i == cells - 1) ? ((cols - 1) - (colCounter - 1)) * colWidth : colWidth)+'%;">'+
+                        // also calculate flex width for the columns to fix last row alignment
+                        //                                                    if we have cols remaining but no more cells, calc remaining flex percentage, else normal percentage   if there is a remainder and we're on the last row, subtract margins of skipped columns from all flex widths
+                        '#'+(brightness < 50 ? 'fff' : '000')+'; flex: calc('+(colCounter + 1 < cols && i + 1 == cells ? ((cols - 1) - (colCounter - 1)) * colWidth : colWidth)+'%'+(remainder && rows == Math.ceil((i+1) / cols) ? ' - calc(' + (cols - remainder) + ' * var(--margin))' : '')+');">'+
+
                         '<div class="content">'+
-                        content +
-                    '</div></div>\n';
+                            content +
+                        '</div>\n'+
+                    '</div>\n';
                     html += (colCounter == cols - 1 ? '</div>\n' : '');
 
                     colCounter = (colCounter == cols - 1 ? 0 : colCounter + 1);
                 }
 
-// older version, garbage code :D
 /*
                 for (let i = 0; i < cells; i++) {
                     for (let j = 0; j < cols; j++) {
